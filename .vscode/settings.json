@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.ejs": "html",
+        "freertos.h": "c",
+        "stm32f10x.h": "c"
+    }
+}
