@@ -18,6 +18,22 @@
 #define TASK_STACK_SIZE (configMINIMAL_STACK_SIZE)
 #define TASK_PRIORITY (tskIDLE_PRIORITY + 1)
 
+typedef struct{
+	/* Led */
+	GPIO_TypeDef*       ledPort;
+	uint32_t            ledClock;
+	uint16_t            ledPin;
+	uint32_t						ledDelay;
+} LedCfg_t;
+
+static LedCfg_t g_ledCfg = {
+	/* Led */
+	GPIOC,
+	RCC_APB2Periph_GPIOC,
+	GPIO_Pin_13,
+	1000
+};
+
 void myTask(void *arg);
 // TaskHandle_t myTaskHandler;
 
@@ -28,12 +44,13 @@ StaticTask_t myTaskTCB;
 int main(void)
 {
     // GPIO初始化
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+    RCC_APB2PeriphClockCmd(g_ledCfg.ledClock, ENABLE);
+	
     GPIO_InitTypeDef GPIO_InitStructure;
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+    GPIO_InitStructure.GPIO_Pin = g_ledCfg.ledPin;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_Init(GPIOC, &GPIO_InitStructure);
+    GPIO_Init(g_ledCfg.ledPort, &GPIO_InitStructure);
 
     // 静态创建任务
     xTaskCreateStatic(myTask,         // 任务函数
@@ -55,15 +72,16 @@ void myTask(void *arg)
 
     while (1)
     {
-        GPIO_SetBits(GPIOC, GPIO_Pin_13);
-        vTaskDelay(300);
-        GPIO_ResetBits(GPIOC, GPIO_Pin_13);
-        vTaskDelay(300);
+        GPIO_SetBits(g_ledCfg.ledPort, g_ledCfg.ledPin);
+        vTaskDelay(g_ledCfg.ledDelay);
+        GPIO_ResetBits(GPIOC, g_ledCfg.ledPin);
+        vTaskDelay(g_ledCfg.ledDelay);
     }
 }
 
 StaticTask_t IdleTaskTCB;
 StackType_t IdleTaskStack[configMINIMAL_STACK_SIZE];
+
 void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
                                    StackType_t **ppxIdleTaskStackBuffer,
                                    uint32_t *pulIdleTaskStackSize)
