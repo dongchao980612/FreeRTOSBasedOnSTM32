@@ -49,14 +49,14 @@ int main(void)
     GPIO_Init(g_ledCfg.ledPort, &GPIO_InitStructure);
 
     // 创建任务
-    xTaskCreate(myTask,          // 任务函数
-                "myTask",        // 任务名称
-                TASK_STACK_SIZE, // 任务堆栈大小
-                NULL,            // 任务参数
-                TASK_PRIORITY,   // 任务优先级
-                &myTaskHandler); // 任务句柄
+    xTaskCreate(myTask,          		// 任务函数
+                "myTask",        		// 任务名称
+                TASK_STACK_SIZE, 		// 任务堆栈大小
+                NULL,            		// 任务参数
+                TASK_PRIORITY,   		// 任务优先级
+                &myTaskHandler); 		// 任务句柄
 
-    vTaskStartScheduler(); // 启动任务调度器
+    vTaskStartScheduler(); 					// 启动任务调度器
     while (1)
     {
     }

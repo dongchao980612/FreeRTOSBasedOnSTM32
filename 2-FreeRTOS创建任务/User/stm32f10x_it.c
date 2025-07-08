@@ -99,7 +99,7 @@ void UsageFault_Handler(void)
   {
   }
 }
-#if 0
+#if 1
 /**
   * @brief  This function handles SVCall exception.
   * @param  None
@@ -118,7 +118,7 @@ void DebugMon_Handler(void)
 {
 }
 
-#if 0
+#if 1
 /**
   * @brief  This function handles PendSVC exception.
   * @param  None
@@ -134,7 +134,7 @@ void PendSV_Handler(void)
   * @param  None
   * @retval None
   */
-#if 0
+#if 1
 void SysTick_Handler(void)
 {
 }

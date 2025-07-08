@@ -53,15 +53,15 @@ int main(void)
     GPIO_Init(g_ledCfg.ledPort, &GPIO_InitStructure);
 
     // 静态创建任务
-    xTaskCreateStatic(myTask,         // 任务函数
-                      "myTask",       // 任务名称
-                      TASK_STACK_SIZE, // 任务栈大小
-                      NULL,           // 传递给任务函数的参数
-                      TASK_PRIORITY,  // 任务优先级
-                      myTaskStack,    // 任务栈
-                      &myTaskTCB);    // 任务控制块
+    xTaskCreateStatic(myTask,         	// 任务函数
+                      "myTask",       	// 任务名称
+                      TASK_STACK_SIZE, 	// 任务栈大小
+                      NULL,           	// 传递给任务函数的参数
+                      TASK_PRIORITY,  	// 任务优先级
+                      myTaskStack,    	// 任务栈
+                      &myTaskTCB);    	// 任务控制块
 
-    vTaskStartScheduler(); // 启动任务调度器
+    vTaskStartScheduler(); 							// 启动任务调度器
     while (1)
     {
     }

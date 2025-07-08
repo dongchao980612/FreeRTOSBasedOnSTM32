@@ -5,7 +5,6 @@
 #define configUSE_IDLE_HOOK 0
 #define configUSE_TICK_HOOK 0
 
-#define configSUPPORT_DYNAMIC_ALLOCATION 1 // 动态创建任务
 #define configSUPPORT_STATIC_ALLOCATION 1  // 静态创建任务
 
 // 写入实际的CPU内核时钟频率，也就是CPU指令执行频率。
@@ -55,8 +54,8 @@ configKERNEL_INTERRUPT_PRIORITY setting.  Here 15 corresponds to the lowest
 NVIC value of 255. */
 #define configLIBRARY_KERNEL_INTERRUPT_PRIORITY 15
 
-#define xPortPendSVHandler PendSV_Handler
-#define vPortSVCHandler SVC_Handler
-#define xPortSysTickHandler SysTick_Handler
+//#define xPortPendSVHandler PendSV_Handler
+//#define vPortSVCHandler SVC_Handler
+//#define xPortSysTickHandler SysTick_Handler
 
 #endif /* FREERTOS_CONFIG_H */

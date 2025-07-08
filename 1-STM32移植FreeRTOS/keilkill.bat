@@ -26,4 +26,10 @@ del *.sct /s
 del *.map /s
 del *.uvguix.* /s
 del *.uvoptx /s
+
+::и╬ЁЩ "DebugConfig" "Listings" "Objects"нд╪Ч╪п
+rd /s /q "DebugConfig"
+
+
+
 exit
